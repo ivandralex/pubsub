@@ -1,4 +1,4 @@
-module github.com/crypto-buzz/pubsub
+module github.com/ivandralex/pubsub
 
 go 1.16
 
