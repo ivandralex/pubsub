@@ -62,7 +62,7 @@ func PullMessages(ctx context.Context, projectID, subID string) (chan *pubsub.Me
 	return messages, errChan
 }
 
-func PublishMessage(ctx context.Context, projectID, topicID string, msg []byte) error {
+func PublishMessage(ctx context.Context, projectID, topicID string, message *pubsub.Message) error {
 	client, err := pubsub.NewClient(ctx, projectID)
 	if err != nil {
 		return err
@@ -70,10 +70,6 @@ func PublishMessage(ctx context.Context, projectID, topicID string, msg []byte) 
 	defer client.Close()
 
 	topic := client.Topic(topicID)
-
-	message := &pubsub.Message{
-		Data: msg,
-	}
 
 	res := topic.Publish(ctx, message)
 
